@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <!-- lines 8 - 24 credit CS50 -->
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- documentation at http://getbootstrap.com/docs/4.3/, alternative themes at https://bootswatch.com/ -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Datatables CSS File – Link obtained from https://cdn.datatables.net/ -->
+        <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+
+        <!-- https://favicon.io/emoji-favicons/money-mouth-face/ -->
+        <link href="/static/favicon.ico" rel="icon">
+
+        <link href="/static/stylesheet.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+        <title>Sanitation: {% block title %}Home{% endblock %}</title>
+
+    </head>
+
+    <body>
+
+        <nav class = "navbar navbar-expand-lg navbar-light bg-light">
+            {% if session.user_id %}
+                <a class="navbar-brand" href="/">Plastic & Plastic Disposal</a>
+                <ul class="navbar-nav mr-auto mt-2">
+                    <li class="nav-item"><a class="nav-link" href="/instr">Instructions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/activities">Activities</a></li>
+                </ul>
+                <ul class="navbar-nav ml-auto mt-2">
+                    <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                    <li class="nav-item" color="red"><a class="nav-link" href="/delacc">Delete Account</a></li>
+                </ul>
+            {% else %}
+                <ul class="navbar-nav ml-auto mt-2">
+                    <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                </ul>
+            {% endif %}
+        </nav>
+
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+
+        <footer class="small text-center text-muted">
+            Website by Krishna R. Styled using <a href="https://getbootstrap.com/">Bootstrap</a>
+        </footer>
+
+    </body>
+
+</html>
