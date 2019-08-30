@@ -1,12 +1,17 @@
-{% extends layout.html %}
+{% extends "layout.html" %}
 
 {% block title %}
-Plastic: Login
+Login
 {% endblock %}
 
 {% block main %}
+<h1>Login</h1>
+<br><br>
 <form action="/login" method="post">
     <input autofocus class="form-control" name="username" placeholder="Username" type="text">
+    <br><br>
     <input class="form-control" name="password" placeholder="Password" type="password">
+    <br><br>
+    <input type="submit">
 </form>
 {% endblock %}
