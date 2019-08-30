@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Activities
+{% endblock %}
+
+{% block main %}
+<form action="/activities" method="post">
+    <select name="unit">
+        {% for i in range(units_dict|length) %}
+            <option value={{i}}>{{units_dict[i]}}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+    <input type="submit">
+</form>
+{% endblock %}

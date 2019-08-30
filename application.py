@@ -27,6 +27,8 @@ Session(app)
 
 db = SQL("sqlite:///plastic.db")
 
+units_dict = {}
+
 @app.route("/")
 def home():
     return render_template("home.html")
@@ -72,4 +74,11 @@ def register():
                 db.execute("INSERT INTO users (username, hash, level, lang) VALUES (:username, :pw, 0, :lang)", username=request.form.get("username"), pw=pw_hash, lang=request.form.get("lang"))
                 return redirect("/")
 
+@app.route("/instr")
+def instr():
+    return render_template("instructions.html")
 
+@app.route("/activities", methods=["GET", "POSt"])
+def act():
+    if request.method == "GET":
+        return render_template("activities.html")
