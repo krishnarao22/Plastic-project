@@ -27,7 +27,7 @@ Session(app)
 
 db = SQL("sqlite:///plastic.db")
 
-units_dict = {}
+units_dict = {"1": "What is Plastic"}
 
 @app.route("/")
 def home():
@@ -50,6 +50,8 @@ def login():
                 return "Invalid username or password!"
             else:
                 session["user_id"] = rows[0]["id"]
+                lang = db.execute("SELECT lang FROM users WHERE id=:uid", uid = session["user_id"])
+                global lang
                 return redirect("/")
 
 @app.route("/register", methods=["GET", "POST"])
@@ -78,7 +80,19 @@ def register():
 def instr():
     return render_template("instructions.html")
 
-@app.route("/activities", methods=["GET", "POSt"])
+@app.route("/activities", methods=["GET", "POST"])
 def act():
     if request.method == "GET":
         return render_template("activities.html")
+    else:
+        if lang == "eng":
+            unit_rqst = request.form.get("unit")
+        elif lang == "hi":
+            unit_rqst = request.form.get("unit") + "_h"
+        global unit_rqst
+        return redirect("/information")
+
+@app.route("/information", metods=["GET", "POST"])
+def info():
+    if request.method == "GET":
+        # incomplete #

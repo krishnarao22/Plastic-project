@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Information
+{% endblock %}
+
+{% block main %}
+    <h1>Information</h1>
+    <ul>
+    {% for i in range {{maintxt|length}} %}
+        <li>{{maintxt[i]}}</li>
+    {% endfor %}
+    </ul>
+    <br><br>
+    <h5>Continue?</h5>
+    <form action="/information" methods="POST">
+        <input type="radio" autofocus value="y" name="continue">   Yes
+        <input type="radio" autofocus value="n" name="continue">   No
+    </form>
+{% endblock %}
