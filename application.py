@@ -50,8 +50,8 @@ def login():
                 return "Invalid username or password!"
             else:
                 session["user_id"] = rows[0]["id"]
-                lang = db.execute("SELECT lang FROM users WHERE id=:uid", uid = session["user_id"])
                 global lang
+                lang = db.execute("SELECT lang FROM users WHERE id=:uid", uid = session["user_id"])
                 return redirect("/")
 
 @app.route("/register", methods=["GET", "POST"])
@@ -85,14 +85,17 @@ def act():
     if request.method == "GET":
         return render_template("activities.html")
     else:
+        global unit_rqst
         if lang == "eng":
             unit_rqst = request.form.get("unit")
         elif lang == "hi":
             unit_rqst = request.form.get("unit") + "_h"
-        global unit_rqst
         return redirect("/information")
 
-@app.route("/information", metods=["GET", "POST"])
+@app.route("/information", methods=["GET", "POST"])
 def info():
     if request.method == "GET":
-        # incomplete #
+        maintxt = db.execute("SELECT point_text FROM :tbl", tbl = unit_rqst)
+        return render_template("information.html", maintxt=maintxt)
+    else:
+        return "Work on this"
