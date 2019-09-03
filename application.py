@@ -98,4 +98,5 @@ def info():
         maintxt = db.execute("SELECT point_text FROM :tbl", tbl = unit_rqst)
         return render_template("information.html", maintxt=maintxt)
     else:
-        return "Work on this"
+        if request.form.get("continue") == "yes":
+            return render_template("q1.html")
