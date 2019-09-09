@@ -27,7 +27,6 @@ Session(app)
 
 db = SQL("sqlite:///plastic.db")
 
-units_dict = {"1": "What is Plastic"}
 
 @app.route("/")
 def home():
@@ -83,14 +82,7 @@ def instr():
 @app.route("/activities", methods=["GET", "POST"])
 def act():
     if request.method == "GET":
-        return render_template("activities.html")
-    else:
-        global unit_rqst
-        if lang == "eng":
-            unit_rqst = request.form.get("unit")
-        elif lang == "hi":
-            unit_rqst = request.form.get("unit") + "_h"
-        return redirect("/information")
+        return render_template("activities.html") # REMEMBER TO PASS ON UNITS_DICT
 
 @app.route("/information", methods=["GET", "POST"])
 def info():
