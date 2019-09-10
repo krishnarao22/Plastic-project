@@ -27,6 +27,8 @@ Session(app)
 
 db = SQL("sqlite:///plastic.db")
 
+units_dict = {1: "Unit 1"}
+
 
 @app.route("/")
 def home():
@@ -82,7 +84,7 @@ def instr():
 @app.route("/activities", methods=["GET", "POST"])
 def act():
     if request.method == "GET":
-        return render_template("activities.html") # REMEMBER TO PASS ON UNITS_DICT
+        return render_template("activities.html", u1 = units_dict) # REMEMBER TO PASS ON UNITS_DICT
 
 @app.route("/information", methods=["GET", "POST"])
 def info():
