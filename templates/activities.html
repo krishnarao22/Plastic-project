@@ -6,4 +6,12 @@ Activity Selection
 
 {% block main %}
 <h1>Activities</h1>
+<form action="/activities" method="post">
+    <select name="unit">
+        {% for element in u1 %}
+            <option value={{element}}>{{ u1[element] }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit">
+</form>
 {% endblock %}

@@ -84,12 +84,14 @@ def instr():
 @app.route("/activities", methods=["GET", "POST"])
 def act():
     if request.method == "GET":
-        return render_template("activities.html", u1 = units_dict) # REMEMBER TO PASS ON UNITS_DICT
+        return render_template("activities.html", u1 = units_dict)
+    else:
+        return redirect("/information") # FIND A WAY TO PASS ON THE REQUESTED UNIT
 
 @app.route("/information", methods=["GET", "POST"])
 def info():
     if request.method == "GET":
-        maintxt = db.execute("SELECT point_text FROM :tbl", tbl = unit_rqst)
+        maintxt = db.execute("SELECT point_text FROM :tbl", tbl= unit + "_info")
         return render_template("information.html", maintxt=maintxt)
     else:
         if request.form.get("continue") == "yes":
