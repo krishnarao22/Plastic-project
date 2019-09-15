@@ -7,7 +7,7 @@ Information
 {% block main %}
     <h1>Information</h1>
     <ul>
-    {% for i in range {{maintxt|length}} %}
+    {% for i in range (maintxt|length) %}
         <li>{{maintxt[i]}}</li>
     {% endfor %}
     </ul>
@@ -16,5 +16,6 @@ Information
     <form action="/information" methods="POST">
         <input type="radio" autofocus value="y" name="continue">   Yes
         <input type="radio" autofocus value="n" name="continue">   No
+        <input type="submit">
     </form>
 {% endblock %}
