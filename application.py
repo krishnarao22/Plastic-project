@@ -29,6 +29,7 @@ db = SQL("sqlite:///plastic.db")
 
 units_dict = {1: "Unit 1"}
 
+unit_rqst = None
 
 @app.route("/")
 def home():
@@ -93,8 +94,11 @@ def act():
 @app.route("/information", methods=["GET", "POST"])
 def info():
     if request.method == "GET":
+        global unit_rqst
+        print(unit_rqst)
         maintxt = db.execute("SELECT point_text FROM :tbl", tbl = unit_rqst + "_info")
         return render_template("information.html", maintxt=maintxt)
-    else:
-        if request.form.get("continue") == "yes":
+    elif request.method == "POST":
+        print(request.form.get("continue"))
+        if request.form.get("continue") == "y":
             return render_template("q1.html")
