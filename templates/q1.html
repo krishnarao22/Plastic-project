@@ -7,4 +7,13 @@ Questions
 {% block main %}
     <h1>Question 1</h1>
     <!-- Link to db -->
+    <br><br>
+    <h5>{{ maintxt }}</h5>
+    <br><br>
+    <form action="/q1" method="post">
+        <input type="radio" name="answer" value="opt1"> {{opt_list[0]}} </input>
+        <input type="radio" name="answer" value="opt2"> {{opt_list[1]}} </input>
+        <input type="radio" name="answer" value="opt3"> {{opt_list[2]}} </input>
+        <input type="radio" name="answer" value="opt4"> {{opt_list[3]}} </input>
+    </form>
 {% endblock %}

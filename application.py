@@ -101,4 +101,9 @@ def info():
     elif request.method == "POST":
         print(request.form.get("continue"))
         if request.form.get("continue") == "y":
-            return render_template("q1.html")
+            return redirect("/q1")
+
+@app.route("/q1", methods=["GET", "POST"])
+def q1():
+    if request.method == "GET":
+        # need to pass question and options.
