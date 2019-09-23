@@ -97,6 +97,8 @@ def info():
         global unit_rqst
         print(unit_rqst)
         maintxt = db.execute("SELECT point_text FROM :tbl", tbl = unit_rqst + "_info")
+        for i in range(0, len(maintxt)):
+            maintxt[i] = maintxt[i]['point_text']
         return render_template("information.html", maintxt=maintxt)
     elif request.method == "POST":
         print(request.form.get("continue"))
@@ -106,4 +108,6 @@ def info():
 @app.route("/q1", methods=["GET", "POST"])
 def q1():
     if request.method == "GET":
-        # need to pass question and options.
+        # need to pass question and options
+
+        return render_template("q1.html");
