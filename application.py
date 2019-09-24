@@ -31,6 +31,8 @@ units_dict = {1: "Unit 1"}
 
 unit_rqst = None
 
+source_dict = {}
+
 @app.route("/")
 def home():
     return render_template("home.html")
@@ -109,5 +111,8 @@ def info():
 def q1():
     if request.method == "GET":
         # need to pass question and options
-
+        quest = db.execute("SELECT question FROM :tbl WHERE q_id='1'", tbl = unit_rqst + "_q")
+        quest = quest[0]['1']
+        opt_list = db.execute("SELECT opt1, opt2, opt3, opt4 FROM :tbl WHERE q_id='1'", tbl = unit_rqst + "_q")
+        print(opt_list)
         return render_template("q1.html");
