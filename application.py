@@ -27,11 +27,14 @@ Session(app)
 
 db = SQL("sqlite:///plastic.db")
 
+
+# global vars needed later
 units_dict = {1: "Unit 1"}
-
 unit_rqst = None
-
 source_dict = {}
+
+
+# Routing
 
 @app.route("/")
 def home():
